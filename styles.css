@@ -1,30 +1,42 @@
-.wrapper {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background-color: silver;
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-} 
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+#btn-start {
+    color: #000;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    background-color: grey;
+    border-radius: 15px;
+    cursor: pointer;
+    width: 150px;
+    height: 50px;
+    box-shadow: -8px -8px 20px #2A333D,
+    10px 7px 20px #475462;
+    padding: 0;
+    
+}
+
+#btn-start:active {
+    padding-top: 4px;
+    padding-left: 4px;
+    box-shadow: -5px -5px 20px #2A333D,
+    13px 10px 20px #475462;
+}
 
 .card {
     margin: 10px;
-width: 75px;
-height: 75px;
-
-border-radius: 10px;
-position: relative;
-cursor: pointer;
-perspective: 500px;
+    min-width: 75px;
+    height: 75px;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+    perspective: 500px;
+    display: flex;
 }
-/* .card:hover .front {transform: rotateY(180deg);
-} */
-/* .card:hover .back {
-    transform: rotateY(0deg);
-} */
 
 
 .front, .back {
@@ -53,5 +65,41 @@ perspective: 500px;
     background-color: green;
     border: solid 1px green;
     transform: rotateY(180deg);
-    background-image: url(./img/kitten1.png)
+    /* background-image: url(./img/kitten1.png); */
+    background-size: contain;
+}
+
+.screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    transition: margin 0.5s ease-out;
+    background: linear-gradient(90deg, #29323C 0%, #485563 100%);
+}
+
+.screen.up {
+    margin-top: -100vh;
+}
+
+.wrapper {
+    position: relative;
+    width: 575px;
+    height: 385px;
+    padding: 5px;
+    background: linear-gradient(118.38deg, #39424C -4.6%, #586573 200.44%);
+    box-shadow: -8px -8px 20px #3A434D,
+   10px 7px 20px #576472;
+    border-radius: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hide {
+    opacity: 0;
 }
