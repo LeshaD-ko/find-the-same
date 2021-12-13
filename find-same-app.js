@@ -2,17 +2,22 @@ const wrapper = document.querySelector(".wrapper");
 const screens = document.querySelectorAll(".screen");
 const btnStart = document.querySelector("#btn-start");
 const cardAmount = 24;
-let num = 3;
+// let num = 0;
 let openCardsAmount = 0;
 let cliksAmount = 0;
 let openWin = 0;
 let previousCard;
+let numbers = [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 3, 3, 4, 4];
+
 
 btnStart.addEventListener("click", (event) => {
     screens[0].classList.add("up")
 
     for (let i = 0; i < cardAmount; i++) {
-        createCard(getRandomNumber(0, 4))
+        const k = getRandomNumber(0, numbers.length)
+        createCard(numbers[k]);
+        dosmth(numbers);
+        numbers.splice(k, 1);
     }
 
 })
@@ -25,8 +30,7 @@ function createCard(num) {
     wrapper.append(card);
     card.appendChild(cardFrSide).classList.add("front")
     card.appendChild(cardBkSide).classList.add("back")
-    cardBkSide.style.backgroundImage = `url(./img/kitten${num}.png)`; 
-    dosmth(cardBkSide.style.backgroundImage);
+    cardBkSide.style.backgroundImage = `url(./img/kitten${num}.png)`;
 }
 
 wrapper.addEventListener("click", (event) => {
@@ -36,12 +40,13 @@ wrapper.addEventListener("click", (event) => {
         openCardsAmount++;
         if (openCardsAmount === 1) {
             previousCard = event;
-            // } else if (openCardsAmount > 1) {
         } else if (isCardsSame(previousCard, event)) {
             openCardsAmount = 0;
             openWin += 2;
             if (openWin === cardAmount) {
-               setTimeout(() => { alert(`Congradulation! You win!!! You clicked ${cliksAmount} times`) }, 1500)
+                setTimeout(() => {
+                    alert(`Congradulation! You win!!! You clicked ${cliksAmount} times`)
+                }, 1500)
             }
 
         } else {
@@ -68,7 +73,6 @@ function doOpenCard(event) {
 }
 
 function doCloseCard(event) {
-    dosmth("закрываю");
     setTimeout(() => {
         event.target.style.transform = "";
         event.target.nextElementSibling.style.transform = "";
@@ -76,7 +80,7 @@ function doCloseCard(event) {
 }
 
 function getRandomNumber(min, max) {
-    return Math.round(Math.random() * (max - min) + min)
+    return Math.floor(Math.random() * (max - min) + min)
 }
 
 function dosmth(msg = "something doing") {
